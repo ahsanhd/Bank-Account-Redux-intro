@@ -1,4 +1,4 @@
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 
 function formatCurrency(value) {
   return new Intl.NumberFormat("en", {
@@ -7,14 +7,22 @@ function formatCurrency(value) {
   }).format(value);
 }
 
-function BalanceDisplay({ balance }) {
-  return <div className="balance">{formatCurrency(balance)}</div>;
+function BalanceDisplay() {
+  const { isLoading, balance } = useSelector((store) => store.account);
+  return (
+    <div className="balance">
+      {isLoading ? "Converting..." : formatCurrency(balance)}
+    </div>
+  );
 }
 
-function mapStatetoProps(state) {
-  return {
-    balance: state.account.balance,
-  };
-}
+export default BalanceDisplay;
+////// Legacy Method to connect React Compoonents with Redux Store using connect method
 
-export default connect(mapStatetoProps)(BalanceDisplay);
+// function mapStatetoProps(state) {
+//   return {
+//     balance: state.account.balance,
+//   };
+// }
+
+// export default connect(mapStatetoProps)(BalanceDisplay);
