@@ -25,11 +25,13 @@ function AccountOperations() {
   }
 
   function handleWithdrawal() {
+    if (!withdrawalAmount) return;
     dispatch(withdraw(withdrawalAmount));
     setWithdrawalAmount("");
   }
 
   function handleRequestLoan() {
+    if (!loanAmount || !loanPurpose) return;
     dispatch(requestLoan(loanAmount, loanPurpose));
     setLoanAmount("");
     setLoanPurpose("");
