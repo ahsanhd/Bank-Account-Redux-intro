@@ -36,6 +36,8 @@ export const { createCustomer, updateCustomer } = customerSlice.actions;
 
 export default customerSlice.reducer;
 
+//// Classic Redux
+
 /*
 export default function customerReducer(state = initialStateCustomer, action) {
   switch (action.type) {

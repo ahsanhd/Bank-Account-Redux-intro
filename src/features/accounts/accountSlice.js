@@ -46,7 +46,7 @@ const accountSlice = createSlice({
 export function deposit(amount, currency) {
   if (currency === "USD") return { type: "account/deposit", payload: amount };
 
-  return async function (dispatch, getState) {
+  return async function (dispatch) {
     dispatch({ type: "account/converting" });
 
     const res = await fetch(
@@ -65,6 +65,8 @@ console.log(accountSlice);
 export const { withdraw, requestLoan, payLoan } = accountSlice.actions;
 
 export default accountSlice.reducer;
+
+/// Classic Redux
 
 /*
 export default function accountReducer(state = initialStateAccount, action) {
